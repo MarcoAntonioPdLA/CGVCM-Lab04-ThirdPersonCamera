@@ -15,11 +15,12 @@ public class PlayerController : MonoBehaviour {
     [Header("Coyote Time")]
     [SerializeField] private float coyoteTimeDuration = 0.15f;
 
-    private const float GROUND_CHECKER_RADIUS = 0.05f;
+    private const float GROUND_CHECKER_SIZE = 0.025f;
 
     private Rigidbody rb;
     private Vector2 movementVector;
     private float coyoteTimeCounter = 0f;
+    private bool jumpedThisFrame = false;
     private bool onGround = true;
 
     private void Awake() {
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         if (coyoteTimeCounter > 0f) {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             coyoteTimeCounter = 0f;
+            jumpedThisFrame = true;
         }
     }
 
@@ -46,16 +48,17 @@ public class PlayerController : MonoBehaviour {
 
     private void CheckIfIsOnGround() {
         Vector3 center = transform.position;
-        onGround = Physics.CheckSphere(center, GROUND_CHECKER_RADIUS, groundLayer, QueryTriggerInteraction.Ignore);
+        onGround = Physics.CheckBox(center, new Vector3(2, 1, 2) * GROUND_CHECKER_SIZE, Quaternion.identity, groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     private void HandleCoyoteTime() {
-        if (onGround) {
+        if (onGround && !jumpedThisFrame) {
             coyoteTimeCounter = coyoteTimeDuration;
         }
         else {
             coyoteTimeCounter -= Time.fixedDeltaTime;
         }
+        jumpedThisFrame = false;
     }
 
     private void HandleMovement() {
@@ -68,6 +71,6 @@ public class PlayerController : MonoBehaviour {
     private void OnDrawGizmosSelected() {
         Vector3 center = transform.position;
         Gizmos.color = onGround ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(center, GROUND_CHECKER_RADIUS);
+        Gizmos.DrawWireCube(center, GROUND_CHECKER_SIZE * 2 * new Vector3(2, 1, 2));
     }
 }
