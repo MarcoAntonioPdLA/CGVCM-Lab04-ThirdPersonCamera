@@ -12,10 +12,14 @@ public class PlayerController : MonoBehaviour {
     [Header("Ground Checker")]
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Coyote Time")]
+    [SerializeField] private float coyoteTimeDuration = 0.15f;
+
     private const float GROUND_CHECKER_RADIUS = 0.05f;
 
     private Rigidbody rb;
     private Vector2 movementVector;
+    private float coyoteTimeCounter = 0f;
     private bool onGround = true;
 
     private void Awake() {
@@ -28,19 +32,30 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnJump() {
-        if (onGround) {
+        if (coyoteTimeCounter > 0f) {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            coyoteTimeCounter = 0f;
         }
     }
 
     private void FixedUpdate() {
         CheckIfIsOnGround();
+        HandleCoyoteTime();
         HandleMovement();
     }
 
     private void CheckIfIsOnGround() {
         Vector3 center = transform.position;
         onGround = Physics.CheckSphere(center, GROUND_CHECKER_RADIUS, groundLayer, QueryTriggerInteraction.Ignore);
+    }
+
+    private void HandleCoyoteTime() {
+        if (onGround) {
+            coyoteTimeCounter = coyoteTimeDuration;
+        }
+        else {
+            coyoteTimeCounter -= Time.fixedDeltaTime;
+        }
     }
 
     private void HandleMovement() {
