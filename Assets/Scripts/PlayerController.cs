@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
 
+    [Header("Rotation")]
+    [SerializeField] private float rotationSpeed = 10f;
+
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
 
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float coyoteTimeDuration = 0.15f;
 
     private const float GROUND_CHECKER_SIZE = 0.025f;
+    private Vector3 GOUND_CHECKER_SCALE = new(2.5f, 1f, 2.5f);
 
     private Rigidbody rb;
     private Vector2 movementVector;
@@ -44,11 +48,12 @@ public class PlayerController : MonoBehaviour {
         CheckIfIsOnGround();
         HandleCoyoteTime();
         HandleMovement();
+        HandleRotation();
     }
 
     private void CheckIfIsOnGround() {
         Vector3 center = transform.position;
-        onGround = Physics.CheckBox(center, new Vector3(2, 1, 2) * GROUND_CHECKER_SIZE, Quaternion.identity, groundLayer, QueryTriggerInteraction.Ignore);
+        onGround = Physics.CheckBox(center, GOUND_CHECKER_SCALE * GROUND_CHECKER_SIZE, Quaternion.identity, groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     private void HandleCoyoteTime() {
@@ -68,9 +73,17 @@ public class PlayerController : MonoBehaviour {
         rb.linearVelocity = newLinearVelocity;
     }
 
+    private void HandleRotation() {
+        Vector3 direction = new(movementVector.x, 0f, movementVector.y);
+        if (direction.sqrMagnitude < 0.01f) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+    }
+
     private void OnDrawGizmosSelected() {
         Vector3 center = transform.position;
         Gizmos.color = onGround ? Color.green : Color.red;
-        Gizmos.DrawWireCube(center, GROUND_CHECKER_SIZE * 2 * new Vector3(2, 1, 2));
+        Gizmos.DrawWireCube(center, GROUND_CHECKER_SIZE * 2 * GOUND_CHECKER_SCALE);
     }
 }
