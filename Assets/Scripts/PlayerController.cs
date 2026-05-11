@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Coyote Time")]
     [SerializeField] private float coyoteTimeDuration = 0.15f;
 
+    [Header("Camera")]
+    [SerializeField] public Transform cameraTransform;
+
     private const float GROUND_CHECKER_SIZE = 0.025f;
     private Vector3 GOUND_CHECKER_SCALE = new(2.5f, 1f, 2.5f);
 
@@ -67,18 +70,25 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandleMovement() {
-        Vector3 direction = new(movementVector.x, 0f, movementVector.y);
+        Vector3 direction = GetCameraRelativeDirection();
         Vector3 newLinearVelocity = direction * speed;
         newLinearVelocity.y = rb.linearVelocity.y;
         rb.linearVelocity = newLinearVelocity;
     }
 
     private void HandleRotation() {
-        Vector3 direction = new(movementVector.x, 0f, movementVector.y);
+        Vector3 direction = GetCameraRelativeDirection();
         if (direction.sqrMagnitude < 0.01f) return;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    private Vector3 GetCameraRelativeDirection() {
+        Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
+        Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
+
+        return cameraForward * movementVector.y + cameraRight * movementVector.x;
     }
 
     private void OnDrawGizmosSelected() {
