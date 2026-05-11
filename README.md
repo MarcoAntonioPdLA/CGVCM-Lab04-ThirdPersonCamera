@@ -9,8 +9,8 @@ Adicionalmente, se implementó el efecto de X-ray para poder ver al personaje in
 - Esc - salir
 
 ## Descargar
-Ver la sección [Releases]() para descargar el ejecutable.
+Ver la sección [Releases](https://github.com/MarcoAntonioPdLA/CGVCM-Lab04-ThirdPersonCamera/releases) para descargar el ejecutable.
 
 ## Informe
 El enlace al video de demostración se encuentra dentro del informe.
-[Ver informe PDF]()
+[Ver informe PDF](https://github.com/MarcoAntonioPdLA/CGVCM-Lab04-ThirdPersonCamera/blob/main/Laboratorio_04_Ponce_de_Leon_Aguilar_Marco_UNSA_%20CGVCM.pdf)
