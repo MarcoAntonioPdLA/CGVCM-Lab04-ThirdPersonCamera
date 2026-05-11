@@ -1225,7 +1225,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 50
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -6974,7 +6974,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 50
+    FieldOfView: 40
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -7130,6 +7130,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1523482535975398367, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033745074309428652, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033745074309428652, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7384a5db5c184db4cab74516f2e33d23, type: 2}
+    - target: {fileID: 2322993746555420663, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322993746555420663, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7384a5db5c184db4cab74516f2e33d23, type: 2}
+    - target: {fileID: 3912200992322310858, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528131568488120565, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4827067505390005260, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13
@@ -7173,6 +7201,34 @@ PrefabInstance:
     - target: {fileID: 5311680194860971702, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311680194860971702, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835506355676815270, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451970040430182747, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524792845197980276, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786630394630926650, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994514006926299731, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076355967688813340, guid: f4a1aae10d4d5a442b08f2bf15b74ac7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

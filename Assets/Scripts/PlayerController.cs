@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Camera")]
     [SerializeField] public Transform cameraTransform;
 
-    private const float GROUND_CHECKER_SIZE = 0.025f;
-    private Vector3 GOUND_CHECKER_SCALE = new(2.5f, 1f, 2.5f);
+    private const float GroundCheckerSize = 0.025f;
+    private readonly Vector3 GroundCheckerScale = new(2.5f, 1f, 2.5f);
 
     private Rigidbody rb;
     private Vector2 movementVector;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 
     private void CheckIfIsOnGround() {
         Vector3 center = transform.position;
-        onGround = Physics.CheckBox(center, GOUND_CHECKER_SCALE * GROUND_CHECKER_SIZE, Quaternion.identity, groundLayer, QueryTriggerInteraction.Ignore);
+        onGround = Physics.CheckBox(center, GroundCheckerScale * GroundCheckerSize, Quaternion.identity, groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     private void HandleCoyoteTime() {
@@ -94,6 +94,6 @@ public class PlayerController : MonoBehaviour {
     private void OnDrawGizmosSelected() {
         Vector3 center = transform.position;
         Gizmos.color = onGround ? Color.green : Color.red;
-        Gizmos.DrawWireCube(center, GROUND_CHECKER_SIZE * 2 * GOUND_CHECKER_SCALE);
+        Gizmos.DrawWireCube(center, GroundCheckerSize * 2 * GroundCheckerScale);
     }
 }
